@@ -7,7 +7,7 @@ class MinHeap
     @data = []
   end
 
-  def insert(value:)
+  def insert(value)
     data << value
     heapify_up(index: data.size - 1)
     value
@@ -25,6 +25,11 @@ class MinHeap
     end
 
     last_element
+  end
+
+  def update(index:, value:)
+    data[index] = value
+    heapify_up(index:)
   end
 
   private

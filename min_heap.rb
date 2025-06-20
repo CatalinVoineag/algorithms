@@ -17,6 +17,7 @@ class MinHeap
     return if data.size.zero?
 
     # Move last to first
+    first_element = data.first
     last_element = data.pop
 
     if !data.size.zero?
@@ -24,7 +25,7 @@ class MinHeap
       heapify_down(index: 0)
     end
 
-    last_element
+    first_element
   end
 
   def update(index:, value:)
@@ -39,27 +40,19 @@ class MinHeap
     left_index = left_child(index:)
     right_index = right_child(index:)
 
-    return if index >= data.size || left_index >= data.size
+    smallest_index = index
 
-    left_value = data[left_index]
-    right_value = data[right_index]
-    our_value = data[index]
+    if left_index < data.size && data[left_index] < data[smallest_index]
+      smallest_index = left_index
+    end
 
-    if right_value && left_value > right_value && our_value > right_value
-      # Swap
-      data[index] = right_value
-      data[right_index] = our_value
-      heapify_down(index: right_index)
-    elsif right_value && right_value > left_value && our_value > left_value
-      # Swap
-      data[index] = left_value
-      data[left_index] = our_value
-      heapify_down(index: left_index)
-    elsif left_value == right_value && our_value > right_value
-      # Swap
-      data[index] = right_value
-      data[right_index] = our_value
-      heapify_down(index: right_index)
+    if right_index < data.size && data[right_index] < data[smallest_index]
+      smallest_index = right_index
+    end
+
+    if smallest_index != index
+      data[index], data[smallest_index] = data[smallest_index], data[index]
+      heapify_down(index: smallest_index)
     end
   end
 

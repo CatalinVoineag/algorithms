@@ -70,4 +70,21 @@ RSpec.describe MinHeap do
       expect(heap.data).to eq([1, 2, 4, 10, 3])
     end
   end
+
+  describe "test edge case" do
+    it "insert and deletes correctly" do
+      heap.insert(5)
+      heap.insert(10)
+      heap.insert(11)
+      heap.insert(7)
+
+      expect(heap.data).to eq([5, 7, 11, 10])
+      heap.delete
+      expect(heap.data).to eq([7, 10, 11])
+      heap.delete
+      expect(heap.data).to eq([10, 11])
+      heap.delete
+      expect(heap.data).to eq([11])
+    end
+  end
 end

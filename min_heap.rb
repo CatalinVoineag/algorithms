@@ -28,11 +28,6 @@ class MinHeap
     first_element
   end
 
-  def update(index:, value:)
-    data[index] = value
-    heapify_up(index:)
-  end
-
   private
 
   def heapify_down(index:)

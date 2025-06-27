@@ -148,13 +148,13 @@ RSpec.describe MinHeap do
 
       expect(heap.index_hash).to eq(
         {
-          0 => { key: 'A', value: 50 },
-          1 => { key: 'B', value: 71 },
-          2 => { key: 'C', value: 100 },
-          3 => { key: 'D', value: 101 },
-          4 => { key: 'E', value: 80 },
-          5 => { key: 'F', value: 200 },
-          6 => { key: 'G', value: 105 }
+          'A' => 0,
+          'B' => 1,
+          'C' => 2,
+          'D' => 3,
+          'E' => 4,
+          'F' => 5,
+          'G' => 6
         }
       )
 
@@ -171,12 +171,26 @@ RSpec.describe MinHeap do
       )
       expect(heap.index_hash).to eq(
         {
-          0 => { key: 'B', value: 71 },
-          2 => { key: 'C', value: 100 },
-          3 => { key: 'D', value: 101 },
-          1 => { key: 'E', value: 80 },
-          5 => { key: 'F', value: 200 },
-          4 => { key: 'G', value: 105 }
+          # 0 => { key: 'B', value: 71 },
+          # 2 => { key: 'C', value: 100 },
+          # 3 => { key: 'D', value: 101 },
+          # 1 => { key: 'E', value: 80 },
+          # 5 => { key: 'F', value: 200 },
+          # 4 => { key: 'G', value: 105 },
+
+          'B' => 0,
+          'C' => 2,
+          'D' => 3,
+          'E' => 1,
+          'F' => 5,
+          'G' => 4
+
+          # 0 => { key: 'B', value: 71 },
+          # 2 => { key: 'C', value: 100 },
+          # 3 => { key: 'D', value: 101 },
+          # 1 => { key: 'E', value: 80 },
+          # 5 => { key: 'F', value: 200 },
+          # 4 => { key: 'G', value: 105 },
         }
       )
 
@@ -192,11 +206,12 @@ RSpec.describe MinHeap do
       )
       expect(heap.index_hash).to eq(
         {
-          2 => { key: 'C', value: 100 },
-          1 => { key: 'D', value: 101 },
-          0 => { key: 'E', value: 80 },
-          3 => { key: 'F', value: 200 },
-          4 => { key: 'G', value: 105 }
+
+          'C' => 2,
+          'D' => 1,
+          'E' => 0,
+          'F' => 3,
+          'G' => 4
         }
       )
 
@@ -211,10 +226,10 @@ RSpec.describe MinHeap do
       )
       expect(heap.index_hash).to eq(
         {
-          0 => { key: 'C', value: 100 },
-          1 => { key: 'D', value: 101 },
-          3 => { key: 'F', value: 200 },
-          2 => { key: 'G', value: 105 }
+          'C' => 0,
+          'D' => 1,
+          'F' => 3,
+          'G' => 2
         }
       )
 
@@ -228,9 +243,9 @@ RSpec.describe MinHeap do
       )
       expect(heap.index_hash).to eq(
         {
-          0 => { key: 'D', value: 101 },
-          1 => { key: 'F', value: 200 },
-          2 => { key: 'G', value: 105 }
+          'D' => 0,
+          'F' => 1,
+          'G' => 2
         }
       )
 
@@ -243,8 +258,8 @@ RSpec.describe MinHeap do
       )
       expect(heap.index_hash).to eq(
         {
-          1 => { key: 'F', value: 200 },
-          0 => { key: 'G', value: 105 }
+          'F' => 1,
+          'G' => 0
         }
       )
 
@@ -256,7 +271,7 @@ RSpec.describe MinHeap do
       )
       expect(heap.index_hash).to eq(
         {
-          0 => { key: 'F', value: 200 }
+          'F' => 0
         }
       )
 
@@ -302,13 +317,13 @@ RSpec.describe MinHeap do
       )
       expect(heap.index_hash).to eq(
         {
-          0 => { key: 'A', value: 51 },
-          1 => { key: 'B', value: 71 },
-          2 => { key: 'C', value: 100 },
-          3 => { key: 'D', value: 101 },
-          4 => { key: 'E', value: 80 },
-          5 => { key: 'F', value: 200 },
-          6 => { key: 'G', value: 105 }
+          'A' => 0,
+          'B' => 1,
+          'C' => 2,
+          'D' => 3,
+          'E' => 4,
+          'F' => 5,
+          'G' => 6
         }
       )
 
@@ -326,13 +341,13 @@ RSpec.describe MinHeap do
       )
       expect(heap.index_hash).to eq(
         {
-          0 => { key: 'E', value: 21 },
-          1 => { key: 'A', value: 51 },
-          2 => { key: 'C', value: 100 },
-          3 => { key: 'D', value: 101 },
-          4 => { key: 'B', value: 71 },
-          5 => { key: 'F', value: 200 },
-          6 => { key: 'G', value: 105 }
+          'A' => 1,
+          'B' => 4,
+          'C' => 2,
+          'D' => 3,
+          'E' => 0,
+          'F' => 5,
+          'G' => 6
         }
       )
 
@@ -350,13 +365,13 @@ RSpec.describe MinHeap do
       )
       expect(heap.index_hash).to eq(
         {
-          0 => { key: 'E', value: 21 },
-          1 => { key: 'A', value: 51 },
-          2 => { key: 'C', value: 100 },
-          3 => { key: 'D', value: 101 },
-          4 => { key: 'B', value: 71 },
-          5 => { key: 'F', value: 202 },
-          6 => { key: 'G', value: 105 }
+          'A' => 1,
+          'B' => 4,
+          'C' => 2,
+          'D' => 3,
+          'E' => 0,
+          'F' => 5,
+          'G' => 6
         }
       )
 
@@ -374,13 +389,13 @@ RSpec.describe MinHeap do
       )
       expect(heap.index_hash).to eq(
         {
-          0 => { key: 'G', value: 2 },
-          1 => { key: 'A', value: 51 },
-          2 => { key: 'E', value: 21 },
-          3 => { key: 'D', value: 101 },
-          4 => { key: 'B', value: 71 },
-          5 => { key: 'F', value: 202 },
-          6 => { key: 'C', value: 100 }
+          'A' => 1,
+          'B' => 4,
+          'C' => 6,
+          'D' => 3,
+          'E' => 2,
+          'F' => 5,
+          'G' => 0
         }
       )
 
@@ -398,13 +413,13 @@ RSpec.describe MinHeap do
       )
       expect(heap.index_hash).to eq(
         {
-          0 => { key: 'G', value: 1 },
-          1 => { key: 'A', value: 51 },
-          2 => { key: 'E', value: 21 },
-          3 => { key: 'D', value: 101 },
-          4 => { key: 'B', value: 71 },
-          5 => { key: 'F', value: 202 },
-          6 => { key: 'C', value: 100 }
+          'A' => 1,
+          'B' => 4,
+          'C' => 6,
+          'D' => 3,
+          'E' => 2,
+          'F' => 5,
+          'G' => 0
         }
       )
 
@@ -422,13 +437,13 @@ RSpec.describe MinHeap do
       )
       expect(heap.index_hash).to eq(
         {
-          0 => { key: 'E', value: 21 },
-          1 => { key: 'A', value: 51 },
-          2 => { key: 'G', value: 100 },
-          3 => { key: 'D', value: 101 },
-          4 => { key: 'B', value: 71 },
-          5 => { key: 'F', value: 202 },
-          6 => { key: 'C', value: 100 }
+          'A' => 1,
+          'B' => 4,
+          'C' => 6,
+          'D' => 3,
+          'E' => 0,
+          'F' => 5,
+          'G' => 2
         }
       )
 
@@ -447,25 +462,25 @@ RSpec.describe MinHeap do
           { key: 'A', value: 10 },
           { key: 'B', value: 20 },
           { key: 'C', value: 30 },
-          { key: 'D', value: 40 },
+          { key: 'D', value: 40 }
         ]
       )
 
-      heap.update(index: 1, new_hash: {key: 'B', value: 50})
+      heap.update(index: 1, new_hash: { key: 'B', value: 50 })
       expect(heap.data).to eq(
         [
           { key: 'A', value: 10 },
           { key: 'D', value: 40 },
           { key: 'C', value: 30 },
-          { key: 'B', value: 50 },
+          { key: 'B', value: 50 }
         ]
       )
       expect(heap.index_hash).to eq(
         {
-          0 => { key: 'A', value: 10 },
-          1 => { key: 'D', value: 40 },
-          2 => { key: 'C', value: 30 },
-          3 => { key: 'B', value: 50 },
+          'A' => 0,
+          'B' => 3,
+          'C' => 2,
+          'D' => 1
         }
       )
     end

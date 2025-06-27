@@ -24,17 +24,15 @@ class MinHeap
     first_element = data.first
     last_element = data.pop
 
-    unless data.empty?
+    if data.any?
       data[0] = last_element
-
-      # this is needed when right index is nil and we don't swap in heapify_down
-      index_hash[0] = last_element if data.size <= 3
+      index_hash.delete(first_element[:key])
+      index_hash[last_element[:key]] = 0
 
       heapify_down(index: 0)
+    else
+      @index_hash = {}
     end
-
-    # delete last element in hash, this should be an orphan element
-    index_hash.delete(data.size)
 
     first_element
   end
@@ -42,20 +40,22 @@ class MinHeap
   def update(index:, new_hash:)
     raise "Index #{index} is out of bounds" if index >= data.size
 
-    #old_hash = data[index]
     old_value = data[index].fetch(:value)
     new_value = new_hash.fetch(:value)
+    new_key = new_hash.fetch(:key)
 
     return if new_value == old_value
 
     data[index] = new_hash
 
     if new_value > old_value
-      #heapify_down(index: 0)
       heapify_down(index:)
 
+      # { key: A}
+      key = data[index][:key]
+
       # if new value remains in the same position update the hash index
-      index_hash[index] = new_hash if data[index] == new_hash
+      index_hash[key] = index if new_key == key
     else
       heapify_up(index:)
     end
@@ -82,15 +82,21 @@ class MinHeap
 
     data[index], data[smallest_index] = data[smallest_index], data[index]
 
-    index_hash[index] = data[index]
-    index_hash[smallest_index] = data[smallest_index]
+    # { key: A}
+    key = data[index][:key]
+    index_hash[key] = index
+    smallest_key = data[smallest_index][:key]
+    index_hash[smallest_key] = smallest_index
 
     heapify_down(index: smallest_index)
   end
 
   def heapify_up(index:)
+    # { key: A}
+    key = data[index][:key]
+
     if index.zero?
-      index_hash[index] = data[index]
+      index_hash[key] = index
       return
     end
 
@@ -99,21 +105,21 @@ class MinHeap
     current_value = data[index].fetch(:value)
 
     if parent_value <= current_value
-      index_hash[index] = data[index] unless index_hash.key?(index)
+      index_hash[key] = index unless index_hash.key?(key)
       return
     end
 
     # swap our value with our parent
     # Swap heapify_up until parent_value <= value
     parent_hash = data[parent_index]
+    parent_key = data[parent_index][:key]
     current_value_hash = data[index]
 
     data[index] = parent_hash
     data[parent_index] = current_value_hash
 
-    # swap indexes in hash
-    index_hash[parent_index] = current_value_hash
-    index_hash[index] = parent_hash
+    index_hash[parent_key] = index
+    index_hash[key] = parent_index
 
     heapify_up(index: parent_index)
   end
